@@ -27,13 +27,13 @@ fi
 
 # vendor
 echo "-----> Vendoring OpenCV shared objects into slug"
-VENDORED_SO="$BUILD_DIR/vendor/opencv/lib"
+VENDORED_SO="$BUILD_DIR/vendor/opencv"
 mkdir -p $VENDORED_SO
-cp -a "$VENDORED_OPENCV/lib/." $VENDORED_SO
+cp -a "$VENDORED_OPENCV/." $VENDORED_SO
 
 # runtime
 mkdir -p "$BUILD_DIR/.profile.d"
 echo "export LD_LIBRARY_PATH=\"\$HOME/vendor/opencv/lib:\$LD_LIBRARY_PATH\"" > $BUILD_DIR/.profile.d/opencv.sh
 echo "export PKG_CONFIG_PATH=\"\$HOME/vendor/opencv/lib/pkgconfig:\$PKG_CONFIG_PATH\"" >> $BUILD_DIR/.profile.d/opencv.sh
 
-bundle config build.ruby-opencv --with-opencv-dir="$VENDORED_OPENCV/lib"
+bundle config build.ruby-opencv --with-opencv-dir="$VENDORED_OPENCV"
